@@ -1,0 +1,44 @@
+/*
+===============
+GENERAL STYLES
+=============
+*/
+
+body,h1,h2,h3,h4 {
+    font-family: 'Helvetica Neue', sans-serif;
+}
+
+
+/*
+===============
+NAV STYLES
+=============
+*/
+.w3-color {
+    background-color: #b31b1b;
+    color: white;
+}
+
+/*
+===============
+TABLE STYLES
+=============
+*/
+
+.table-structure {
+    margin: 0px auto;
+    display: table;
+    
+}
+
+.page-heading {
+    text-align: center;
+}
+
+
+/*
+===============
+FOOTER 
+=============
+
+  
