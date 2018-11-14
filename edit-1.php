@@ -88,7 +88,7 @@ mysqli_close( $dbc ) ;
 
     <p>Last Name: <input type="text" name="newLast" required/><span style="color: red;">*</span> 
 
-    <p>Email: <input type="text" name="newEmail" required/><span style="color: red;">*</span> 
+    <p>Email: <input type="text" name="newEmail" placeholder="a@bcd.com" required/><span style="color: red;">*</span> 
 
     <p>Password: <input type="password" name="newPass" required/><span style="color: red;">*</span> 
 

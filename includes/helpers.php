@@ -257,6 +257,48 @@ function show_user_record($dbc, $id) {
 }
 
 
+# Shows all information about a specific item record
+function show_admin_record($dbc, $id) {
+	# Create a query to get the number, first name and last name sorted by number descending
+	$query = 'SELECT admin_id, reg_time, first_name, last_name, email, pass FROM admins WHERE admin_id = ' . $id;
+
+	# Execute the query
+	$results = mysqli_query( $dbc , $query ) ;
+	check_results($results) ;
+
+	# Show results
+	if( $results )
+	{
+
+  		echo '<H1 class="page-heading">Item</H1>' ;
+  		echo '<TABLE border="1" class="table-structure">';
+  		echo '<TR>';
+  		echo '<TH>Date</TH>';
+  		echo '<TH>First Name</TH>';
+  		echo '<TH>Last Name</TH>';
+		echo '<TH>Email</TH>';
+		echo '<TH>Password</TH>';
+  		echo '</TR>';
+
+  		# For each row result, generate a table row
+  		while ( $row = mysqli_fetch_array( $results , MYSQLI_ASSOC ) )
+  		{
+    		echo '<TR>' ;
+    		echo '<TD>' . $row['reg_time'] . '</TD>' ;
+    		echo '<TD>' . $row['first_name'] . '</TD>' ;
+    		echo '<TD>' . $row['last_name'] . '</TD>' ;
+			echo '<TD>' . $row['email'] . '</TD>' ;
+			echo '<TD>' . $row['pass'] . '</TD>' ;
+    		echo '</TR>' ;
+  		}
+
+  		# End the table
+  		echo '</TABLE>';
+
+  		# Free up the results in memory
+  		mysqli_free_result( $results ) ;
+	}
+}
 
 
 # Shows the query as a debugging aid
@@ -291,9 +333,10 @@ function valid_name($name) {
 #show stuff and users table in the admin page
 function show_admin($dbc) {
 	# Create query to get the date, item name and location lost sorted by create_date
-	$query1 = 'SELECT user_id, first_name, last_name, email, pass, reg_time FROM users ORDER BY user_id ASC';
-	$query2 = 'SELECT id, name, description, create_date, contact_email, contact_phone, status, reward, reward_amount FROM stuff ORDER BY id ASC';
-
+	$query1 = 'SELECT admin_id, first_name, last_name, email, pass, reg_time FROM admins ORDER BY admin_id ASC';
+	$query2 = 'SELECT user_id, first_name, last_name, email, pass, reg_time FROM users ORDER BY user_id ASC';
+	$query3 = 'SELECT id, name, description, create_date, contact_email, contact_phone, status, reward, reward_amount FROM stuff ORDER BY id ASC';
+	
 	# Execute the query1
 	$results1 = mysqli_query( $dbc , $query1 ) ;
 	check_results($results1);
@@ -301,7 +344,43 @@ function show_admin($dbc) {
 	$results2 = mysqli_query( $dbc , $query2 ) ;
 	check_results($results2);
 	
+	$results3 = mysqli_query( $dbc , $query3 ) ;
+	check_results($results3);
+	
 	if( $results1)
+	{
+  		echo '<H1 class="page-heading">Admins</H1>' ;
+  		echo '<TABLE border="1" class="table-structure">';
+  		echo '<TR>';
+  		echo '<TH>ID</TH>';
+  		echo '<TH>First Name</TH>';
+  		echo '<TH>Last Name</TH>';
+		echo '<TH>Email</TH>';
+		echo '<TH>Password</TH>';
+		echo '<TH>Date/Time</TH>';
+		echo '<TH>Edit User Info</TH>';
+  		echo '</TR>';
+
+  		# For each row result, generate a table row
+  		while ( $row = mysqli_fetch_array( $results1 , MYSQLI_ASSOC ) )
+  		{
+			$alink = '<A HREF=edit-2.php?admin_id=' . $row['admin_id']  . '>' . $row['admin_id'] . '</A>' ;
+    		echo '<TR>' ;
+    		echo '<TD>' . $row['admin_id'] . '</TD>' ;
+    		echo '<TD>' . $row['first_name'] . '</TD>' ;
+			echo '<TD>' . $row['last_name'] . '</TD>';
+			echo '<TD>' . $row['email'] . '</TD>';
+			echo '<TD>' . $row['pass'] . '</TD>';
+			echo '<TD>' . $row['reg_time'] . '</TD>';
+			echo '<TD>' . $alink . '</TD>' ;
+    		echo '</TR>' ;
+  		}
+
+  		# End the table
+  		echo '</TABLE>';
+	}	
+	
+	if($results2)
 	{
   		echo '<H1 class="page-heading">Account Users</H1>' ;
   		echo '<TABLE border="1" class="table-structure">';
@@ -316,7 +395,7 @@ function show_admin($dbc) {
   		echo '</TR>';
 
   		# For each row result, generate a table row
-  		while ( $row = mysqli_fetch_array( $results1 , MYSQLI_ASSOC ) )
+  		while ( $row = mysqli_fetch_array( $results2 , MYSQLI_ASSOC ) )
   		{
 			$alink = '<A HREF=edit-1.php?user_id=' . $row['user_id']  . '>' . $row['user_id'] . '</A>' ;
     		echo '<TR>' ;
@@ -333,6 +412,63 @@ function show_admin($dbc) {
   		# End the table
   		echo '</TABLE>';
 	}	
+ 
+	if( $results3)
+	{
+		echo '<H1 class="page-heading">Items</H1>' ;
+  		echo '<TABLE border="1" class="table-structure">';
+  		echo '<TR>';
+  		echo '<TH>ID</TH>';
+  		echo '<TH>Name</TH>';
+  		echo '<TH>Description</TH>';
+		echo '<TH>Date/Time</TH>';
+		echo '<TH>Status</TH>';
+		echo '<TH>Reward</TH>';
+		echo '<TH>Amount</TH>';
+		echo '<TH>Contact Email</TH>';
+		echo '<TH>Contact Number</TH>';
+		echo '<TH>Edit Item Info</TH>';
+  		echo '</TR>';
+
+  		# For each row result, generate a table row
+  		while ( $row = mysqli_fetch_array( $results3 , MYSQLI_ASSOC ) )
+	  		{
+	  		$alink = '<A HREF=edit.php?id=' . $row['id']  . '>' . $row['id'] . '</A>' ;
+	    		echo '<TR>' ;
+	    		echo '<TD>' . $row['id'] . '</TD>' ;
+	    		echo '<TD>' . $row['name'] . '</TD>' ;
+				echo '<TD>' . $row['description'] . '</TD>';
+				echo '<TD>' . $row['create_date'] . '</TD>';
+				echo '<TD>' . $row['status'] . '</TD>';
+				echo '<TD>' . $row['reward'] . '</TD>';
+				echo '<TD>' . $row['reward_amount'] . '</TD>';
+				echo '<TD>' . $row['contact_email'] . '</TD>';
+				echo '<TD>' . $row['contact_phone'] . '</TD>';
+				echo '<TD>' . $alink . '</TD>' ;
+	    		echo '</TR>' ;
+	  		}
+
+  		# End the table
+  		echo '</TABLE>';
+
+  		# Free up the results in memory
+  		mysqli_free_result( $results1 ) ;
+  		mysqli_free_result( $results2 ) ;
+  		mysqli_free_result( $results3 ) ;
+	}
+}
+
+#show stuff table in the normal admin page
+
+function show_admin_normal($dbc) {
+	# Create query to get the date, item name and location lost sorted by create_date
+	$query2 = 'SELECT id, name, description, create_date, contact_email, contact_phone, status, reward, reward_amount FROM stuff ORDER BY id ASC';
+
+	# Execute the query1
+
+	$results2 = mysqli_query( $dbc , $query2 ) ;
+	check_results($results2);
+	
  
 	if( $results2)
 	{
@@ -373,11 +509,9 @@ function show_admin($dbc) {
   		echo '</TABLE>';
 
   		# Free up the results in memory
-  		mysqli_free_result( $results1 ) ;
   		mysqli_free_result( $results2 ) ;
 	}
 }
-
 # Delete a record from the stuff table
 function delete_stuff_record($dbc, $id) {
 	$query = 'DELETE FROM stuff WHERE id = ' . $id ;
@@ -392,6 +526,16 @@ function delete_stuff_record($dbc, $id) {
 #Delete a record from the user record
 function delete_user_record($dbc, $id) {
 	$query = 'DELETE FROM users WHERE user_id = ' . $id ;
+	show_query($query);
+	
+	$results = mysqli_query( $dbc , $query ) ;
+	check_results($results) ;
+
+  return $results ;
+}
+
+function delete_admin_record($dbc, $id) {
+	$query = 'DELETE FROM admins WHERE admin_id = ' . $id ;
 	show_query($query);
 	
 	$results = mysqli_query( $dbc , $query ) ;

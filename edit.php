@@ -127,21 +127,21 @@ mysqli_close( $dbc ) ;
 <!--getting user inputs-->
 
 <form action="" method="POST" class="table-structure w3-center">
-    <p>Name: <input type="text" name="newName" required/><span style="color: red;">*</span> 
+    <p>Name: <input type="text" name="newName" placeholder="Item Name" required/><span style="color: red;">*</span> 
     
-    <p>Description: <input type="text" name="newDescription"/> 
+    <p>Description: <input type="text" name="newDescription" placeholder="Information about the item"/> 
 
-    <p>Location: <input type="text" name="newLocation" required/><span style="color: red;">*</span> 
+    <p>Location: <input type="text" name="newLocation" placeholder="Where did you find this item?" required/><span style="color: red;">*</span> 
 
-    <p>Status: <input type="text" name="newStatus" required/><span style="color: red;">*</span> 
+    <p>Status: <input type="text" name="newStatus" placeholder="found/lost" required/><span style="color: red;">*</span> 
 
-    <p>Reward: <input type="text" name="newReward"/> 
+    <p>Reward: <input type="text" name="newReward" placeholder="yes/no"/> 
 
     <p>Reward Amount: <input type="int" name="newAmount"/> 
 
-    <p>Email: <input type="text" name="newEmail" required/><span style="color: red;">*</span> 
+    <p>Email: <input type="text" name="newEmail" placeholder="a@bcd.com" required/><span style="color: red;">*</span> 
 
-    <p>Phone Number: <input type="int" name="newNumber" required/><span style="color: red;">*</span> 
+    <p>Phone Number: <input type="int" name="newNumber"placeholder="8450000000" required/><span style="color: red;">*</span> 
 
     <P></P><input type="submit"/></p>
 </form>

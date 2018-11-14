@@ -18,6 +18,10 @@
 </nav>
 
 <div class="w3-container add-user w3-center w3-padding-20">
+    <a href="/limbo-Alpha/add-user.php">Add user</a>
+</div>
+
+<div class="w3-container add-user w3-center w3-padding-20">
     <a href="/limbo-Alpha/add-user.php">Add admin user</a>
 </div>
 
@@ -31,6 +35,11 @@ require( 'includes/helpers.php' ) ;
 
 // calling the functions from helpers.php according to the id that the user input
 
+if(isset($_POST['admin_id'])) {
+          delete_admin_record($dbc, $_POST['admin_id']);
+          echo "<p style = 'color: red;
+          '> An admin has been deleted </p>"; 
+}
 
 if(isset($_POST['user_id'])) {
           delete_user_record($dbc, $_POST['user_id']);
@@ -39,25 +48,38 @@ if(isset($_POST['user_id'])) {
 if(isset($_POST['id'])) {
           delete_stuff_record($dbc, $_POST['id']);
 }
+?>
 
+
+
+<?php
 
 show_admin($dbc);
-
 
 mysqli_close( $dbc ) ;
 ?>
 
+
+
+
+
  <!--getting user inputs -->
  
+
  
 
 <div class="w3-cell-row">
   <form action="admin.php" method="post" class="table-structure w3-cell">
-    <p>User ID number: <input type="int" name="user_id" /><input type="submit" value="Delete"/></p>
+    <p>Admin ID number: <input type="int" name="admin_id" /><input type="submit" value="Delete" class="admin-btn"/></p>
+  </form>
+  
+  
+  <form action="admin.php" method="post" class="table-structure w3-cell">
+    <p>User ID number: <input type="int" name="user_id" /><input type="submit" value="Delete" class="admin-btn"/></p>
   </form>
   
   <form action="admin.php" method="post" class="table-structure w3-cell">
-    <p class="w3-padding-16">Item ID number: <input type="int" name="id"/><input type="submit" value="Delete"/></p>
+    <p class="w3-padding-16">Item ID number: <input type="int" name="id"/><input type="submit" value="Delete" class="admin-btn"/></p>
   </form>
 
 </div>

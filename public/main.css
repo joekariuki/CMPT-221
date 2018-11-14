@@ -21,6 +21,21 @@ NAV STYLES
 
 /*
 ===============
+ADMIN STYLES
+=============
+*/
+
+p input .admin-btn {
+    border-radius: 4px;
+    border-style: none;
+    padding: 4px 10px;
+    margin-left: 5px;
+}
+ 
+  
+ 
+/*
+===============
 TABLE STYLES
 =============
 */
