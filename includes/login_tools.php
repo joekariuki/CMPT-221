@@ -34,7 +34,7 @@ function validate($email = 'email', $password = 'pass')
     return -1 ;
 
   # Make the query
-  $query = "SELECT email, pass FROM users WHERE (email='" . $email . "' && pass='" . $password . "')" ;
+  $query = "SELECT email, pass FROM admins WHERE (email='" . $email . "' && pass='" . $password . "')" ;
   show_query($query) ;
 
   # Execute the query
