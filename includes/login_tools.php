@@ -6,7 +6,7 @@
 require( 'includes/helpers.php' ) ;
 
 # Loads a specified or default URL.
-function load( $page = 'admin.php', $pid = -1 )
+function load( $page, $pid)
 {
   # Begin URL with protocol, domain, and current directory.
   $url = 'http://' . $_SERVER[ 'HTTP_HOST' ] . dirname( $_SERVER[ 'PHP_SELF' ] ) ;
@@ -36,15 +36,44 @@ function validate($email = 'email', $password = 'pass')
   # Make the query
   $query = "SELECT email, pass FROM admins WHERE (email='" . $email . "' && pass='" . $password . "')" ;
   show_query($query) ;
-
+  
   # Execute the query
   $results = mysqli_query( $dbc, $query ) ;
   check_results($results);
 
+  
   # If we get no rows, the login failed
   if (mysqli_num_rows( $results ) == 0 )
   return -1 ;
+ 
+  # We have at least one row, so get the frist one and return it
+  $row = mysqli_fetch_array($results, MYSQLI_ASSOC) ;
 
+  $pid = $row [ 'id' ] ;
+
+  return intval($pid) ;
+}
+
+function validatetwo($email = 'email', $password = 'pass')
+{
+  global $dbc;
+
+  if(empty($email)||empty($password))
+    return -1 ;
+
+  # Make the query
+  $query = "SELECT email, pass FROM users WHERE (email='" . $email . "' && pass='" . $password . "')" ;
+  show_query($query) ;
+  
+  # Execute the query
+  $results = mysqli_query( $dbc, $query ) ;
+  check_results($results);
+
+  
+  # If we get no rows, the login failed
+  if (mysqli_num_rows( $results ) == 0 )
+  return -1 ;
+  
   # We have at least one row, so get the frist one and return it
   $row = mysqli_fetch_array($results, MYSQLI_ASSOC) ;
 

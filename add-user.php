@@ -70,7 +70,7 @@ mysqli_close( $dbc ) ;
   <p class="w3-center submit-btn"><input type="submit" value ="Add User"></p>
 </form>
 
-
+</body>
 
 <?php
 # Includes header

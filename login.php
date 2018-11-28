@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-  <title>Limbo</title>
+  <title>Login</title>
 <?php
 # Includes header
 require( 'includes/header.php' ) ;
@@ -11,20 +11,39 @@ require( 'includes/connect_db.php' ) ;
 # Connect to MySQL server and the database
 require( 'includes/login_tools.php' ) ;
 
+
+
 // if statement to validate the email and password which is being referenced from the user table 
 
 if ($_SERVER[ 'REQUEST_METHOD' ] == 'POST') {
 
 	$email = $_POST['email'] ;
-  $pass = $_POST['pass'] ;
+  $password = $_POST['pass'] ;
   
-    $pid = validate($email, $pass);
+    $pid = validate($email, $password);
     
     if($pid == -1)
       echo '<p style="color:red;" class="w3-center" >Login failed please try again.</P>' ;
 
-    else
+    else 
       load('admin.php', $pid);
+      
+
+}
+
+if ($_SERVER[ 'REQUEST_METHOD' ] == 'POST') {
+
+	$email = $_POST['email'] ;
+  $password = $_POST['pass'] ;
+  
+    $pid = validatetwo($email, $password);
+    
+    if($pid == -1)
+      echo '<p style="color:red;" class="w3-center" >Login failed please try again.</P>' ;
+
+    else 
+      load('admin-1.php', $pid);
+      
 }
 ?>
 
@@ -38,8 +57,9 @@ if ($_SERVER[ 'REQUEST_METHOD' ] == 'POST') {
 <td>Password:</td><td><input type="password" name="pass"></td>
 </tr>
 </table>
-  <p class="w3-center"><input type="submit" class="login-btn"></p>
+  <p class="w3-center"><input type="submit" class="login-btn" value="Login"></p>
 </form>
+
 
 <?php
 # Includes header

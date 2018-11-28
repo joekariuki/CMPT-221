@@ -38,7 +38,7 @@ create table admins (
 
 -- insert data into admins table
 insert into admins (first_name, last_name, email, pass, reg_time)
-values ("tyrone", "biggums", "tyrone.biggums@gmail.com", "12345", now());
+values ("tyrone", "biggums", "tyrone@gmail.com", "12345", now());
 
 -- create stuff tale
 create table stuff (
@@ -46,27 +46,25 @@ create table stuff (
     location_name text not null,
     name text not null,
     description text not null,
-    -- imagelink image
-    
     create_date DATETIME not null,
     contact_email text not null,
     contact_phone int not null,
     status Set ('found', 'lost'),
     reward Set ('yes','no'),
     reward_amount int,
+    image_link text,
     primary key (id)
     -- foreign key (location_name) references locations(name)
 );
 
 -- insert data to populate stuff tables
-insert into stuff (location_name, name, description, create_date, contact_email, contact_phone, status, reward, reward_amount)
-values ('Dyson Center', 'Black iPhone 7+', '6 month old iPhone, has a scratch on it', '2018-11-23 00:03:00', 'a@gmail.com', 000, 'lost', 'yes', 50),
-       ('Donnelly Hall', 'Gucci Slides', 'Has my signature at the back', '2018-10-13 00:02:00','a@gmail.com', 2435678, 'lost', 'no', 0),
-       ('Fulton Street Townhouses (Lower)', 'Gold Casio Watch', 'Has a broken watch dial', '2018-09-23 00:06:00', 'a@gmail.com', 1234543, 'lost', 'yes', 20),
-       ('Chapel', 'Shaker Bottle', 'White shaker bottle with a black top', '2018-07-13 00:13:00', 'a@gmail.com', 000, 'found', 'no', 0),
-       ('Byrne House', 'Macbook', 'Plain silver Macbook Pro with no stickers', '2018-02-23 00:23:00', 'a@gmail.com', 000, 'found', 'no', 0),
-       ('Fulton Street Townhouses (Lower)', 'Gold Casio Watch', 'Has a broken watch dial', '2018-01-01 00:03:00', 'a@gmail.com', 1234543, 'found', 'yes', 20);
-
+insert into stuff (location_name, name, description, create_date, contact_email, contact_phone, status, reward, reward_amount, image_link)
+values ('Dyson Center', 'Black iPhone 7+', '6 month old iPhone, has a scratch on it', '2018-11-23 00:03:00', 'a@gmail.com', 000, 'lost', 'yes', 50, 'https://images-na.ssl-images-amazon.com/images/I/91Os7OM5%2BFL._SY550_.jpg'),
+       ('Donnelly Hall', 'Gucci Slides', 'Has my signature at the back', '2018-10-13 00:02:00','a@gmail.com', 2435678, 'lost', 'no', 0, 'https://eyeconicwear.com/wp-content/uploads/2017/03/EyeConicWear-Gucci-GG-Supreme-tiger-slide-sandal-3.jpg'),
+       ('Fulton Street Townhouses (Lower)', 'Gold Casio Watch', 'Has a broken watch dial', '2018-09-23 00:06:00', 'a@gmail.com', 1234543, 'lost', 'yes', 20, 'https://i.ebayimg.com/images/g/zhIAAOSwbqpT1pSn/s-l640.jpg'),
+       ('Chapel', 'Shaker Bottle', 'White shaker bottle with a black top', '2018-07-13 00:13:00', 'a@gmail.com', 000, 'found', 'no', 0, 'https://images-na.ssl-images-amazon.com/images/I/61jC%2Bv6qnUL._SY679_.jpg'),
+       ('Byrne House', 'Macbook', 'Plain silver Macbook Pro with no stickers', '2018-02-23 00:23:00', 'a@gmail.com', 000, 'found', 'no', 0, 'https://cdn.shopify.com/s/files/1/0299/9993/products/KBGuardMBSL_03.jpg?v=1437692829');
+       
 -- create locations table
 create table locations (
     id INT primary key auto_increment,

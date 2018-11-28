@@ -115,6 +115,17 @@ if( isset($_POST['newNumber']) ) {
 
 }
 
+if( isset($_POST['newLink']) ) {
+
+    $id = $_GET['id'];
+    $newLink = $_POST['newLink'];
+    $query9 = "UPDATE stuff SET image_link ='$newLink' WHERE id='$id'" ;
+	show_query($query9);
+	
+	$results = mysqli_query( $dbc , $query9 ) ;
+
+}
+
 if(isset($_GET['id'])) {
           show_record($dbc, $_GET['id']);
 }
@@ -142,6 +153,8 @@ mysqli_close( $dbc ) ;
     <p>Email: <input type="text" name="newEmail" placeholder="a@bcd.com" required/><span style="color: red;">*</span> 
 
     <p>Phone Number: <input type="int" name="newNumber"placeholder="8450000000" required/><span style="color: red;">*</span> 
+    
+    <p>Image Link: <input type="text" name="newLink"placeholder="mothslovelamps.com/meme" required/><span style="color: red;">*</span> 
 
     <P></P><input type="submit"/></p>
 </form>

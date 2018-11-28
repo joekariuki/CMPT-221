@@ -2,7 +2,7 @@
 <html>
   <title>Found Items</title>
   
-
+<body>
 <?php
 # Includes header
 require( 'includes/header.php' ) ;
@@ -21,10 +21,11 @@ show_found_records_brief($dbc);
 mysqli_close( $dbc ) ;
 ?>
 <!--link for the user to go to the report found item page-->
-<div class="report-lost">
-    <a href="/limbo-Alpha/found-1.php">Report found item</a>
+<div class="w3-center w3-container report">
+      <a class="report-btn" href="/limbo-Alpha/found-1.php">Report found item</a>
 </div>
 
+</body>
 <?php
 # Includes header
 require( 'includes/footer.php' ) ;

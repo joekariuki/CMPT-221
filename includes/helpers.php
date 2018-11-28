@@ -46,8 +46,8 @@ function show_lost_records($dbc) {
 }
 
 # Inserts a lost record into the limbo stuff table
-function insert_lost_record($dbc, $name, $location,$description, $status, $create_date, $contact_email, $contact_phone, $reward, $reward_amount) {
-  $query = 'INSERT INTO stuff(name, location_name, description, status, create_date, contact_email, contact_phone, reward, reward_amount) VALUES ("' . $name .'" , "' . $location .'" , "' . $description . '", "' . $status . '","' .$create_date. '", "' . $contact_email . '", "' . $contact_phone . '", "' . $reward . '", "' . $reward_amount . '")' ;
+function insert_lost_record($dbc, $name, $location, $description, $status, $create_date, $contact_email, $contact_phone, $reward, $reward_amount, $image_link) {
+  $query = 'INSERT INTO stuff(name, location_name, description, status, create_date, contact_email, contact_phone, reward, reward_amount, image_link) VALUES ("' . $name .'" , "' . $location .'" , "' . $description . '", "' . $status . '","' .$create_date. '", "' . $contact_email . '", "' . $contact_phone . '", "' . $reward . '", "' . $reward_amount . '", "' . $image_link . '")' ;
   show_query($query);
 
   $results = mysqli_query($dbc,$query) ;
@@ -57,8 +57,8 @@ function insert_lost_record($dbc, $name, $location,$description, $status, $creat
 }
 
 #Inserts a found record into the limbo stuff table
-function insert_found_record($dbc, $name, $location,$description, $status, $create_date, $contact_email, $contact_phone) {
-  $query = 'INSERT INTO stuff(name, location_name, description, status, create_date, contact_email, contact_phone) VALUES ("' . $name .'" , "' . $location .'" , "' . $description . '", "' . $status . '", "' . $create_date . '", "' . $contact_email . '", "' . $contact_phone . '")' ;
+function insert_found_record($dbc, $name, $location,$description, $status, $create_date, $contact_email, $contact_phone, $image_link) {
+  $query = 'INSERT INTO stuff(name, location_name, description, status, create_date, contact_email, contact_phone, image_link) VALUES ("' . $name .'" , "' . $location .'" , "' . $description . '", "' . $status . '", "' . $create_date . '", "' . $contact_email . '", "' . $contact_phone . '", "' . $image_link . '")' ;
   show_query($query);
 
   $results = mysqli_query($dbc,$query) ;
@@ -165,7 +165,7 @@ function show_records_ql($dbc) {
 # Shows all information about a specific item record
 function show_record($dbc, $id) {
 	# Create a query to get the number, first name and last name sorted by number descending
-	$query = 'SELECT id, description, create_date, name, location_name, status, contact_email, contact_phone, reward, reward_amount FROM stuff WHERE id = ' . $id;
+	$query = 'SELECT id, description, create_date, name, location_name, status, contact_email, contact_phone, reward, reward_amount, image_link FROM stuff WHERE id = ' . $id;
 
 	# Execute the query
 	$results = mysqli_query( $dbc , $query ) ;
@@ -187,6 +187,7 @@ function show_record($dbc, $id) {
 		echo '<TH>Reward Amount ($USD)</TH>';
 		echo '<TH>Contact Email</TH>';
 		echo '<TH>Contact Number</TH>';
+		echo '<TH>Image</TH>';
   		echo '</TR>';
 
   		# For each row result, generate a table row
@@ -202,12 +203,16 @@ function show_record($dbc, $id) {
 			echo '<TD>' . $row['reward_amount'] . '</TD>' ;
 			echo '<TD>' . $row['contact_email'] . '</TD>' ;
 			echo '<TD>' . $row['contact_phone'] . '</TD>' ;
+			$alink = '<img style="width: 100px; height: 100px;" src='. $row['image_link'] . ">'"  ;
+    		echo '<TD>' . $alink . '</TD>';
     		echo '</TR>' ;
+    		
   		}
 
   		# End the table
   		echo '</TABLE>';
-
+  		
+	
   		# Free up the results in memory
   		mysqli_free_result( $results ) ;
 	}
@@ -250,7 +255,7 @@ function show_user_record($dbc, $id) {
 
   		# End the table
   		echo '</TABLE>';
-
+  		
   		# Free up the results in memory
   		mysqli_free_result( $results ) ;
 	}

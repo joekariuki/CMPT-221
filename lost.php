@@ -25,8 +25,8 @@ mysqli_close( $dbc ) ;
 ?>
 
 
-<div class="w3-container report-lost">
-    <a href="/limbo-Alpha/lost-1.php">Report lost item</a>
+<div class="w3-center w3-container report">
+    <a class="report-btn" href="/limbo-Alpha/lost-1.php">Report lost item</a>
 </div>
 
 <?php
