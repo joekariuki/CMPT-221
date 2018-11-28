@@ -26,9 +26,17 @@ function load( $page, $pid)
 # Validates the input.
 # Returns -1 if validate fails, and >= 0 if it succeeds
 # which is the primary key id.
-function validate($email = 'email', $password = 'pass')
+function validate($email, $password)
 {
   global $dbc;
+  
+
+// if (password_verify($password, $hashpass)) {
+//     // Success!
+// }
+// else {
+//     // Invalid credentials
+// }
 
   if(empty($email)||empty($password))
     return -1 ;
@@ -45,7 +53,8 @@ function validate($email = 'email', $password = 'pass')
   # If we get no rows, the login failed
   if (mysqli_num_rows( $results ) == 0 )
   return -1 ;
- 
+  // else 
+  // $pid = 1
   # We have at least one row, so get the frist one and return it
   $row = mysqli_fetch_array($results, MYSQLI_ASSOC) ;
 
@@ -73,7 +82,8 @@ function validatetwo($email = 'email', $password = 'pass')
   # If we get no rows, the login failed
   if (mysqli_num_rows( $results ) == 0 )
   return -1 ;
-  
+  // else 
+  // $pid = 2
   # We have at least one row, so get the frist one and return it
   $row = mysqli_fetch_array($results, MYSQLI_ASSOC) ;
 

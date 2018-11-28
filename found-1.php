@@ -107,7 +107,7 @@ if ($_SERVER[ 'REQUEST_METHOD' ] == 'POST') {
       (isset($_POST['contact_email'])) echo $_POST['contact_email']; ?>" placeholder="a@bcd.com" required><span style="color: red;">*</span></td>
     </tr>   
     <tr>
-      <td>Contact Phone Number: <input type="number" name="contact_phone" value="<?php if
+      <td>Contact Phone Number: <input type="int" name="contact_phone" value="<?php if
       (isset($_POST['contact_phone'])) echo $_POST['contact_phone']; ?>" placeholder="8450000000" minlength="10" maxlength="10" required><span style="color: red;">*</span></td>
     </tr>
     <tr>

@@ -34,8 +34,8 @@ if ($_SERVER[ 'REQUEST_METHOD' ] == 'POST') {
   	$reg_time = $_POST['reg_time'];
   	$pass = $_POST['pass'];
   	$hashpass = hash('ripemd160', $pass);
-    insert_admin_user($dbc, $firstname, $lastname, $email, $reg_time, $hashpass);
-    echo '<p class="reported-text">New admin user has been added!</p>';
+    insert_superadmin_user($dbc, $firstname, $lastname, $email, $reg_time, $hashpass);
+    echo '<p class="reported-text">New master admin user has been added!</p>';
 }
 
 
@@ -43,8 +43,8 @@ if ($_SERVER[ 'REQUEST_METHOD' ] == 'POST') {
 mysqli_close( $dbc ) ;
 ?>
 <!--Get inputs from the user. -->
-<h1 class="page-heading">Add New Admin User</h1>
-<form action="add-user.php" method="POST">
+<h1 class="page-heading">Add New Master Admin User</h1>
+<form action="add-user-1.php" method="POST">
   <table class="table-structure">
     <tr>
       <td>First Name: <input type="text" name="firstName" value="<?php if

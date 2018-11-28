@@ -4,7 +4,7 @@
 
 <!DOCTYPE html>
 <html>
-<title>Lost Something</title>
+<title>Lost Items</title>
 
 <?php
 # Includes header
@@ -25,8 +25,9 @@ mysqli_close( $dbc ) ;
 ?>
 
 
+<p class="w3-center report-text">Can't find what's been lost? You can report the found item below.</p>
 <div class="w3-center w3-container report">
-    <a class="report-btn" href="/limbo-Alpha/lost-1.php">Report lost item</a>
+    <a class="report-btn" href="/limbo-Alpha/found-1.php">Report found item</a>
 </div>
 
 <?php

@@ -26,6 +26,11 @@ require( 'includes/header.php' ) ;
     <a href="/limbo-Alpha/found.php" class="w3-button w3-color w3-round" >Click Here</a>
   </div>
 
+<form  method="post" id="searchform"> 
+<input  type="text" name="name"> 
+<input  type="submit" name="submit" value="Search"> 
+	    </form> 
+	    
   <div class="w3-container w3-center w3-padding-32 w3-white w3-half">
     <h1 class="w3-xlarge">Have you found something?</h1>
     <a href="/limbo-Alpha/lost.php" class="w3-button w3-color w3-round" >Click Here</a>

@@ -1,20 +1,21 @@
 /*
 ===============
-GENERAL STYLES
+General Styles
 =============
 */
 
 body {
     height: 100vh;
 }
-body,h1,h2,h3,h4 {
+
+body,h1,h2,h3,h4,p {
     font-family: 'Helvetica Neue', sans-serif;
 }
 
 
 /*
 ===============
-NAV STYLES
+Nav Styles
 =============
 */
 .w3-color {
@@ -24,7 +25,7 @@ NAV STYLES
 
 /*
 ===============
-ADMIN STYLES
+Admin Styles
 =============
 */
 
@@ -39,7 +40,7 @@ p input .admin-btn {
  
 /*
 ===============
-TABLE STYLES
+Table Styles
 =============
 */
 
@@ -54,7 +55,7 @@ TABLE STYLES
 }
 
 
-td input, select {
+td input, .edit-text, select {
     width: 95%;
     padding: 10px 10px;
     border: none;
@@ -89,6 +90,12 @@ Buttons
     color: white;
 }
 
+.delete {
+    border-radius: 4px;
+    border-style: none;
+    padding: 6px 8px;
+}
+
 .report-btn {
     background-color: #dc3545;
     border-radius: 4px;
@@ -97,15 +104,29 @@ Buttons
     color: white;
     text-align: center;
     margin: 0px auto;
+    text-decoration: none;
 }
 
+.report-btn:hover {
+    background-color: #DF4957;
+}
+
+
+/*
+===============
+Report Item Styles 
+===============
+*/
+.report-text {
+    color: #323232;
+}
 
 
 
 /*
 ===============
-FOOTER 
-=============
+Footer 
+===============
 */
 
 footer {
@@ -118,3 +139,4 @@ footer {
     margin-top: 5px;
     margin-bottom: 5px;
 }
+

@@ -14,7 +14,7 @@ create table users (
     first_name varchar(20) not null,
     last_name varchar(40) not null,
     email varchar(60) not null,
-    pass char(40) not null,
+    pass char(160) not null,
     reg_time DATETIME not null,
     primary key (user_id),
     unique (email)
@@ -22,23 +22,23 @@ create table users (
 );
 
 -- insert data into user tables
-insert into users (first_name, last_name, email, pass, reg_time)
-values ("admin", "gazelle", "dave@gmail.com", "12345", now()), ("amind2", "roomba", "bob@gmail.com", "12345", now());
+-- insert into users (first_name, last_name, email, pass, reg_time)
+-- values ("admin", "gazelle", "dave@gmail.com", "12345", now()), ("amind2", "roomba", "bob@gmail.com", "12345", now());
 
 create table admins (
     admin_id int unsigned not null auto_increment,
     first_name varchar(20) not null,
     last_name varchar(40) not null,
     email varchar(60) not null,
-    pass char(40) not null,
+    pass char(160) not null,
     reg_time DATETIME not null,
     primary key (admin_id),
     unique (email)
 );
 
 -- insert data into admins table
-insert into admins (first_name, last_name, email, pass, reg_time)
-values ("tyrone", "biggums", "tyrone@gmail.com", "12345", now());
+-- insert into admins (first_name, last_name, email, pass, reg_time)
+-- values ("tyrone", "biggums", "tyrone@gmail.com", "12345", now());
 
 -- create stuff tale
 create table stuff (

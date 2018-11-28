@@ -18,6 +18,7 @@ function show_lost_records($dbc) {
 	{
   		# rendering the lost table
   		echo '<H1 class="page-heading">Lost Items</H1>' ;
+  		echo '<p class="w3-center">Seems like you\'ve found something! Here is a list of all the lost items</p>';
   		echo '<TABLE class="table-structure" border="1">';
   		echo '<TR>';
   		echo '<TH>Id</TH>';
@@ -76,6 +77,15 @@ function insert_admin_user($dbc, $firstname, $lastname, $email, $reg_time, $pass
 
   return $results;
 }
+function insert_superadmin_user($dbc, $firstname, $lastname, $email, $reg_time, $pass) {
+  $query = 'INSERT INTO admins(first_name, last_name, email, reg_time, pass) VALUES ("' . $firstname .'" , "' . $lastname .'" , "' . $email . '", "' . $reg_time . '", "' . $pass . '")' ;
+  show_query($query);
+
+  $results = mysqli_query($dbc,$query) ;
+  check_results($results) ;
+
+  return $results;
+}
 # Show record of found items in Found Items page
 function show_found_records_brief($dbc) {
 	# Create a query to get essential information from the stuff table about found items reported
@@ -90,6 +100,7 @@ function show_found_records_brief($dbc) {
 	{
 		#rendering found table
   		echo '<H1 class="page-heading">Found Items</H1>' ;
+  		echo '<p class="w3-center">Seems like you\'ve lost something! Here is a list of all the found items</p>';
   		echo '<TABLE border="1" class="table-structure">';
   		echo '<TR>';
   		echo '<TH>Id</TH>';
@@ -231,7 +242,7 @@ function show_user_record($dbc, $id) {
 	if( $results )
 	{
 
-  		echo '<H1 class="page-heading">Item</H1>' ;
+  		echo '<H1 class="page-heading">Update User</H1>' ;
   		echo '<TABLE border="1" class="table-structure">';
   		echo '<TR>';
   		echo '<TH>Date</TH>';
@@ -275,7 +286,7 @@ function show_admin_record($dbc, $id) {
 	if( $results )
 	{
 
-  		echo '<H1 class="page-heading">Item</H1>' ;
+  		echo '<H1 class="page-heading">Update Admin</H1>' ;
   		echo '<TABLE border="1" class="table-structure">';
   		echo '<TR>';
   		echo '<TH>Date</TH>';
@@ -354,7 +365,7 @@ function show_admin($dbc) {
 	
 	if( $results1)
 	{
-  		echo '<H1 class="page-heading">Admins</H1>' ;
+  		echo '<H1 class="page-heading">Master Admins</H1>' ;
   		echo '<TABLE border="1" class="table-structure">';
   		echo '<TR>';
   		echo '<TH>ID</TH>';
@@ -387,7 +398,7 @@ function show_admin($dbc) {
 	
 	if($results2)
 	{
-  		echo '<H1 class="page-heading">Account Users</H1>' ;
+  		echo '<H1 class="page-heading">Admins</H1>' ;
   		echo '<TABLE border="1" class="table-structure">';
   		echo '<TR>';
   		echo '<TH>ID</TH>';
@@ -495,7 +506,7 @@ function show_admin_normal($dbc) {
   		# For each row result, generate a table row
   		while ( $row = mysqli_fetch_array( $results2 , MYSQLI_ASSOC ) )
 	  		{
-	  		$alink = '<A HREF=edit.php?id=' . $row['id']  . '>' . $row['id'] . '</A>' ;
+	  		$alink = '<A HREF=edit-3.php?id=' . $row['id']  . '>' . $row['id'] . '</A>' ;
 	    		echo '<TR>' ;
 	    		echo '<TD>' . $row['id'] . '</TD>' ;
 	    		echo '<TD>' . $row['name'] . '</TD>' ;

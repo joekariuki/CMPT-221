@@ -19,13 +19,14 @@ if ($_SERVER[ 'REQUEST_METHOD' ] == 'POST') {
 
 	$email = $_POST['email'] ;
   $password = $_POST['pass'] ;
+  $hashpass = hash('ripemd160', $password);
   
-    $pid = validate($email, $password);
+    $pid = validate($email, $hashpass);
     
     if($pid == -1)
       echo '<p style="color:red;" class="w3-center" >Login failed please try again.</P>' ;
 
-    else 
+    else
       load('admin.php', $pid);
       
 
@@ -35,8 +36,9 @@ if ($_SERVER[ 'REQUEST_METHOD' ] == 'POST') {
 
 	$email = $_POST['email'] ;
   $password = $_POST['pass'] ;
+  $hashpass = hash('ripemd160', $password);
   
-    $pid = validatetwo($email, $password);
+    $pid = validatetwo($email, $hashpass);
     
     if($pid == -1)
       echo '<p style="color:red;" class="w3-center" >Login failed please try again.</P>' ;
