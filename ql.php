@@ -1,13 +1,12 @@
-<!--
-# Name: Name Hoang, Joe Kariuki, Tawan Scott
--->
+<!--This is the quicklinks page which display brief information-->
+<!--about every item, lost or found, in the stuff table-->
 
 <?php
 # Includes header
 require( 'includes/header.php' ) ;
 ?>
 
-<title>Lost Something</title>
+<title>Quick Links</title>
 
 <?php
 

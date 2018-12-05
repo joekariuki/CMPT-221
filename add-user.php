@@ -1,3 +1,7 @@
+<!--This page allows for adding a new admin user-->
+<!--It takes superadmin input about information on a new admin user, passes those input into variables, passes those variables into a fucntion-->
+<!--that makes SQL query to the database to insert a new user admin into the users table.-->
+
 <!DOCTYPE html>
 <html>
     <title>Add User</title>
@@ -33,9 +37,8 @@ if ($_SERVER[ 'REQUEST_METHOD' ] == 'POST') {
   	$email = $_POST['email'];
   	$reg_time = $_POST['reg_time'];
   	$pass = $_POST['pass'];
-  	$hashpass = hash('ripemd160', $pass);
+  	$hashpass = hash('ripemd160', $pass); //encrypt the password
     insert_admin_user($dbc, $firstname, $lastname, $email, $reg_time, $hashpass);
-    echo '<p class="reported-text">New admin user has been added!</p>';
 }
 
 
@@ -69,7 +72,7 @@ mysqli_close( $dbc ) ;
     </tr>   
    
   </table>
-  <p class="w3-center"><input type="submit" classs="submit-btn" value ="Add User"></p>
+  <p class="w3-center"><input type="submit" class="submit-btn" value ="Add User"></p>
 </form>
 
 </body>

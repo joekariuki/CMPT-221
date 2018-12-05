@@ -1,3 +1,7 @@
+<!--When an user click on the id of an item in the quicklinks page,-->
+<!--they are redirected to this page which display the full information-->
+<!--on the item that they selected-->
+
 <!DOCTYPE html>
 <html>
 <title>Quick Links</title>

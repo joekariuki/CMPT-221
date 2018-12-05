@@ -1,3 +1,8 @@
+<!--This page allows anyone to report a found item-->
+<!--It takes the input, generates POST requests of those inputs when the user press submit,-->
+<!--passes those POST requests into variables, passes those variables into a function that-->
+<!--makes a query to insert the item into the stuff table-->
+
 <!DOCTYPE html>
 <html>
 <title>Report Found Item</title>
@@ -47,7 +52,7 @@ if ($_SERVER[ 'REQUEST_METHOD' ] == 'POST') {
   <table class="table-structure">
     <tr>
       <td>Item: <input type="text" name="name" value="<?php if
-      (isset($_POST['name'])) echo $_POST['name']; ?>" placeholder="Item Name" required><span style="color: red;">*</span>
+      (isset($_POST['name'])) echo $_POST['name']; ?>" placeholder="Item Name" required><span class="required">*</span>
     </tr>
      <!-- Drop down list locations -->
     <tr>
@@ -87,28 +92,28 @@ if ($_SERVER[ 'REQUEST_METHOD' ] == 'POST') {
            <option value="Sheahan Hall">Sheahan Hall</option>
            <option value="Steel Plant Studios and Gallery">Steel Plant Studios and Gallery</option>
            <option value="Student Center/Music Building">Student Center/Music Building</option>
-           <option value="Ward Hall">Ward Hall/option>
+           <option value="Ward Hall">Ward Hall</option>
            <option value="West Cedar Townhouses (Lower)">West Cedar Townhouses (Lower)</option>
            <option value="West Cedar Townhouses (Upper)">West Cedar Townhouses (Upper)</option>
            <option value="Rotunda">Rotunda</option>
         </select>
-        <span style="color: red;">*</span></td>
+        <span class="required">*</span></td>
     </tr>
       <td>Description: <input type="text" name="description" value="<?php if
       (isset($_POST['description'])) echo $_POST['description']; ?>" placeholder="Additional details"></td>
     </tr>
      <tr>
       <td>Date/Time: <input type="text" name="create_date" value="<?php if
-      (isset($_POST['create_date'])) echo $_POST['create_date']; ?>" placeholder="YYYY-MM-DD HH:MM:SS" required><span style="color: red;">*</span></td>
+      (isset($_POST['create_date'])) echo $_POST['create_date']; ?>" placeholder="YYYY-MM-DD HH:MM:SS" required><span class="required">*</span></td>
     </tr>
     <tr>
     <tr>
       <td>Contact email: <input type="email" name="contact_email" value="<?php if
-      (isset($_POST['contact_email'])) echo $_POST['contact_email']; ?>" placeholder="a@bcd.com" required><span style="color: red;">*</span></td>
+      (isset($_POST['contact_email'])) echo $_POST['contact_email']; ?>" placeholder="a@bcd.com" required><span class="required">*</span></td>
     </tr>   
     <tr>
       <td>Contact Phone Number: <input type="int" name="contact_phone" value="<?php if
-      (isset($_POST['contact_phone'])) echo $_POST['contact_phone']; ?>" placeholder="8450000000" minlength="10" maxlength="10" required><span style="color: red;">*</span></td>
+      (isset($_POST['contact_phone'])) echo $_POST['contact_phone']; ?>" placeholder="8450000000" minlength="10" maxlength="10" required><span class="required">*</span></td>
     </tr>
     <tr>
       <td>Image Link: <input type="text" name="image_link" value="<?php if

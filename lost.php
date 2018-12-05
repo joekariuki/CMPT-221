@@ -1,6 +1,4 @@
-<!--
-# Name: Name Hoang, Joe Kariuki, Tawan Scott
--->
+<!--This page display the lost item records-->
 
 <!DOCTYPE html>
 <html>
@@ -25,7 +23,7 @@ mysqli_close( $dbc ) ;
 ?>
 
 
-<p class="w3-center report-text">Can't find what's been lost? You can report the found item below.</p>
+<p class="w3-center report-text">You can report the found item below.</p>
 <div class="w3-center w3-container report">
     <a class="report-btn" href="/limbo-Alpha/found-1.php">Report found item</a>
 </div>

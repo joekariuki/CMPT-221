@@ -1,3 +1,7 @@
+<!--This page allows for adding superadmin-->
+<!--Takes superadmin input about information on a new superadmin, passes those input into variables, passes those variables into a fucntion-->
+<!--that makes SQL query to the database to insert a new superadmin into the admins table.-->
+
 <!DOCTYPE html>
 <html>
     <title>Add User</title>
@@ -33,7 +37,7 @@ if ($_SERVER[ 'REQUEST_METHOD' ] == 'POST') {
   	$email = $_POST['email'];
   	$reg_time = $_POST['reg_time'];
   	$pass = $_POST['pass'];
-  	$hashpass = hash('ripemd160', $pass);
+  	$hashpass = hash('ripemd160', $pass); //encrypt the password
     insert_superadmin_user($dbc, $firstname, $lastname, $email, $reg_time, $hashpass);
     echo '<p class="reported-text">New master admin user has been added!</p>';
 }

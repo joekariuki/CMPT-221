@@ -1,3 +1,6 @@
+<!--This is the page that the superadmin use to edit an admin user -->
+<!--It takes the inputs and puts them into POST requests which then trigger a query that modify the users table-->
+
 <!DOCTYPE html>
 <html>
     <title>Update User</title>
@@ -14,7 +17,6 @@
   <a href="/limbo-Alpha/lost.php" class="w3-left w3-button w3-hover-white">Lost Items</a>
   <a href="/limbo-Alpha/found.php" class="w3-left w3-button w3-hover-white">Found Items</a>
   <a href="/limbo-Alpha/ql.php" class="w3-left w3-button w3-hover-white">Quick Links</a>
-  <a href="/limbo-Alpha/admin.php" class="w3-left w3-button w3-hover-white">Master Admin Dashboard</a>
   <a href="/limbo-Alpha/landing.php" class="w3-right w3-button w3-hover-white">Logout</a>
 </nav>
     
@@ -64,7 +66,7 @@ if( isset($_POST['newEmail']) ) {
 if( isset($_POST['newPass']) ) {
 
     $id = $_GET['user_id'];
-    $newPass = $_POST['newPass'];
+    $newPass = hash('ripemd160',($_POST['newPass'])); //encrypt the password
     $query4 = "UPDATE users SET pass='$newPass' WHERE user_id='$id'" ;
 	show_query($query4);
 	
@@ -85,17 +87,22 @@ mysqli_close( $dbc ) ;
 
 <!--getting user inputs-->
 
-<form action="" method="POST" class="table-structure">
-    <p>First Name: <input type="text" name="newName" required/><span style="color: red;">*</span> 
-
-    <p>Last Name: <input type="text" name="newLast" required/><span style="color: red;">*</span> 
-
-    <p>Email: <input type="text" name="newEmail" placeholder="a@bcd.com" required/><span style="color: red;">*</span> 
-
-    <p>Password: <input type="password" name="newPass" required/><span style="color: red;">*</span> 
-
-
-    <P></P><input type="submit"/></p>
+<form action="" method="POST">
+    <table class="table-structure">
+        <tr>
+          <td>First Name:<input type="text" name="newName" required/><span class="required">*</span></td>
+        </tr>
+        <tr>
+          <td>Last Name: <input type="text" name="newLast" required/><span class="required">*</span> </td>
+        </tr>
+        <tr>
+          <td>Email: <input type="email" name="newEmail" placeholder="a@bcd.com" required/><span class="required">*</span> </td>
+        </tr>
+        <tr>
+          <td>Password: <input type="password" name="newPass" required/><span class="required">*</span></td>
+        </tr>
+    </table>
+    <p class="w3-center w3-container"><input type="submit"  class="update-btn" value ="Update Admin"></p>
 </form>
 
 <?php

@@ -1,6 +1,4 @@
-<!--
-# Joe, Nam & Tawan
--->
+
 <?php
 # Includes these helper functions
 require( 'includes/helpers.php' ) ;
@@ -23,20 +21,13 @@ function load( $page, $pid)
   exit() ;
 }
 
-# Validates the input.
+# Validates the input when logging in as a superadmin (so we check from the admins table)
 # Returns -1 if validate fails, and >= 0 if it succeeds
 # which is the primary key id.
 function validate($email, $password)
 {
   global $dbc;
   
-
-// if (password_verify($password, $hashpass)) {
-//     // Success!
-// }
-// else {
-//     // Invalid credentials
-// }
 
   if(empty($email)||empty($password))
     return -1 ;
@@ -63,6 +54,9 @@ function validate($email, $password)
   return intval($pid) ;
 }
 
+# Validates the input when logging in as an admin user (so we check from the users table)
+# Returns -1 if validate fails, and >= 0 if it succeeds
+# which is the primary key id.
 function validatetwo($email = 'email', $password = 'pass')
 {
   global $dbc;

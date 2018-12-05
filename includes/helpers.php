@@ -2,8 +2,6 @@
 <?php
 $debug = true;
 
-# Name: Name Hoang, Joe Kariuki, Tawan Scott
-
 #Show record of lost items in Lost Items page
 function show_lost_records($dbc) {
 	# Create a query to get essential information from the stuff table about lost items reported
@@ -18,7 +16,7 @@ function show_lost_records($dbc) {
 	{
   		# rendering the lost table
   		echo '<H1 class="page-heading">Lost Items</H1>' ;
-  		echo '<p class="w3-center">Seems like you\'ve found something! Here is a list of all the lost items</p>';
+  		echo '<p class="w3-center">Here is a list of all the lost items</p>';
   		echo '<TABLE class="table-structure" border="1">';
   		echo '<TR>';
   		echo '<TH>Id</TH>';
@@ -68,6 +66,7 @@ function insert_found_record($dbc, $name, $location,$description, $status, $crea
   return $results;
 }
 
+#Insert an admin user (not to be confused with superadmins) into the users table
 function insert_admin_user($dbc, $firstname, $lastname, $email, $reg_time, $pass) {
   $query = 'INSERT INTO users(first_name, last_name, email, reg_time, pass) VALUES ("' . $firstname .'" , "' . $lastname .'" , "' . $email . '", "' . $reg_time . '", "' . $pass . '")' ;
   show_query($query);
@@ -77,6 +76,8 @@ function insert_admin_user($dbc, $firstname, $lastname, $email, $reg_time, $pass
 
   return $results;
 }
+
+#Insert a superadmin into the admins table
 function insert_superadmin_user($dbc, $firstname, $lastname, $email, $reg_time, $pass) {
   $query = 'INSERT INTO admins(first_name, last_name, email, reg_time, pass) VALUES ("' . $firstname .'" , "' . $lastname .'" , "' . $email . '", "' . $reg_time . '", "' . $pass . '")' ;
   show_query($query);
@@ -86,7 +87,8 @@ function insert_superadmin_user($dbc, $firstname, $lastname, $email, $reg_time, 
 
   return $results;
 }
-# Show record of found items in Found Items page
+
+# Show record of found items in the Lost Something? page (found.php)
 function show_found_records_brief($dbc) {
 	# Create a query to get essential information from the stuff table about found items reported
 	$query = 'SELECT id, create_date, name, location_name FROM stuff WHERE status = "found" ORDER BY create_date DESC' ;
@@ -100,7 +102,7 @@ function show_found_records_brief($dbc) {
 	{
 		#rendering found table
   		echo '<H1 class="page-heading">Found Items</H1>' ;
-  		echo '<p class="w3-center">Seems like you\'ve lost something! Here is a list of all the found items</p>';
+  		echo '<p class="w3-center">Here is a list of all the found items</p>';
   		echo '<TABLE border="1" class="table-structure">';
   		echo '<TR>';
   		echo '<TH>Id</TH>';
@@ -129,7 +131,7 @@ function show_found_records_brief($dbc) {
 	}
 }
 
-#Show record of all items (for quicklinks page) 
+#Show record of all items for quicklinks page (ql.php)
 function show_records_ql($dbc) {
 	# Create a query to get the date, item name and location lost sorted by create_date
 	$query = 'SELECT id, create_date, name, status, reward FROM stuff ORDER BY create_date DESC' ;
@@ -143,6 +145,7 @@ function show_records_ql($dbc) {
 	{
 
   		echo '<H1 class="page-heading">Quick Links</H1>' ;
+  		 echo '<p class="w3-center">Here\'s a list of lost and found item in the database</p>';
   		echo '<TABLE border="1" class="table-structure">';
   		echo '<TR>';
   		echo '<TH>ID</TH>';
@@ -173,9 +176,10 @@ function show_records_ql($dbc) {
 	}
 }
 
+
 # Shows all information about a specific item record
 function show_record($dbc, $id) {
-	# Create a query to get the number, first name and last name sorted by number descending
+	# Create a query to get all information in all collumns of about the item
 	$query = 'SELECT id, description, create_date, name, location_name, status, contact_email, contact_phone, reward, reward_amount, image_link FROM stuff WHERE id = ' . $id;
 
 	# Execute the query
@@ -227,9 +231,10 @@ function show_record($dbc, $id) {
   		# Free up the results in memory
   		mysqli_free_result( $results ) ;
 	}
+	
 }
 
-# Shows all information about a specific item record
+# Shows all information about a specific admin user
 function show_user_record($dbc, $id) {
 	# Create a query to get the number, first name and last name sorted by number descending
 	$query = 'SELECT user_id, reg_time, first_name, last_name, email, pass FROM users WHERE user_id = ' . $id;
@@ -242,7 +247,7 @@ function show_user_record($dbc, $id) {
 	if( $results )
 	{
 
-  		echo '<H1 class="page-heading">Update User</H1>' ;
+  		echo '<H1 class="page-heading">Update Admin</H1>' ;
   		echo '<TABLE border="1" class="table-structure">';
   		echo '<TR>';
   		echo '<TH>Date</TH>';
@@ -273,7 +278,7 @@ function show_user_record($dbc, $id) {
 }
 
 
-# Shows all information about a specific item record
+# Shows all information about a specific superadmin
 function show_admin_record($dbc, $id) {
 	# Create a query to get the number, first name and last name sorted by number descending
 	$query = 'SELECT admin_id, reg_time, first_name, last_name, email, pass FROM admins WHERE admin_id = ' . $id;
@@ -346,9 +351,9 @@ function valid_name($name) {
 
 
 
-#show stuff and users table in the admin page
+#show stuff, users, and admins  table in the superadmin page
 function show_admin($dbc) {
-	# Create query to get the date, item name and location lost sorted by create_date
+	# Create queries to get information from the stuff, users, and admins table
 	$query1 = 'SELECT admin_id, first_name, last_name, email, pass, reg_time FROM admins ORDER BY admin_id ASC';
 	$query2 = 'SELECT user_id, first_name, last_name, email, pass, reg_time FROM users ORDER BY user_id ASC';
 	$query3 = 'SELECT id, name, description, create_date, contact_email, contact_phone, status, reward, reward_amount FROM stuff ORDER BY id ASC';
@@ -474,8 +479,7 @@ function show_admin($dbc) {
 	}
 }
 
-#show stuff table in the normal admin page
-
+#show stuff table in the admin user page
 function show_admin_normal($dbc) {
 	# Create query to get the date, item name and location lost sorted by create_date
 	$query2 = 'SELECT id, name, description, create_date, contact_email, contact_phone, status, reward, reward_amount FROM stuff ORDER BY id ASC';
@@ -528,6 +532,7 @@ function show_admin_normal($dbc) {
   		mysqli_free_result( $results2 ) ;
 	}
 }
+
 # Delete a record from the stuff table
 function delete_stuff_record($dbc, $id) {
 	$query = 'DELETE FROM stuff WHERE id = ' . $id ;
@@ -539,7 +544,7 @@ function delete_stuff_record($dbc, $id) {
   return $results ;
 }
 
-#Delete a record from the user record
+#Delete a record from the users table
 function delete_user_record($dbc, $id) {
 	$query = 'DELETE FROM users WHERE user_id = ' . $id ;
 	show_query($query);
@@ -550,6 +555,7 @@ function delete_user_record($dbc, $id) {
   return $results ;
 }
 
+#Delete a record from the admins table 
 function delete_admin_record($dbc, $id) {
 	$query = 'DELETE FROM admins WHERE admin_id = ' . $id ;
 	show_query($query);
@@ -560,6 +566,53 @@ function delete_admin_record($dbc, $id) {
   return $results ;
 }
 
+#Search and display information about one or more items in the stuff table that matches the search word through SQL LIKE clause
+function search($dbc, $searchword) {
+	$query = "SELECT * FROM stuff WHERE name LIKE '%$searchword%' OR description LIKE '%$searchword%' OR location_name LIKE '%$searchword%' OR status LIKE '%$searchword%' ";
 
+	# Execute the query
+	$results = mysqli_query( $dbc , $query ) ;
+	check_results($results) ;
+
+	# Show table headers
+	# add an if statement that queries if the result is 0 and displays the string "There is no item under that matches that search"
+
+	 if(mysqli_num_rows($results) === 0) {
+		echo '<h2 class="w3-center" style="font-size: 18px; padding-top: 40px;">Your search result does not exist. Please search for a new item</h2>';
+		echo '<p class="w3-center"><a class="w3-center" href="landing.php" >Return to search</a></p>';
+	} else if( $results )
+	{
+		echo '<h1 class="page-heading">Search Result</h1>';
+		echo '<p class="w3-center" style="font-size: 18px;">Here are items in the database related to your search</p>';
+  		echo '<TABLE border="1" class="table-structure">';
+  		echo '<TR>';
+  		echo '<TH>ID</TH>';
+  		echo '<TH>Date/Time</TH>';
+		echo '<TH>Item</TH>';
+		echo '<TH>Status</TH>';
+  		echo '</TR>';
+  
+
+  		# For each row result, generate a table row
+  		while ( $row = mysqli_fetch_array( $results , MYSQLI_ASSOC ) )
+  		{
+  			$alink = '<A HREF=ql-1.php?id=' . $row['id']  . '>' . $row['id'] . '</A>' ;
+    		echo '<TR>' ;
+    		echo '<TD>' . $alink . '</TD>' ;
+    		echo '<TD>' . $row['create_date'] . '</TD>' ;
+    		echo '<TD>' . $row['name'] . '</TD>' ;
+			echo '<TD>' . $row['status'] . '</TD>';
+    		echo '</TR>' ;
+  		}
+
+  		# End the table
+  		echo '</TABLE>';
+  		echo '<p class="w3-center"><a href="landing.php">Return to search</a></p>';
+
+  		# Free up the results in memory
+  		mysqli_free_result( $results ) ;
+	}
+	 
+}
 
 ?>
