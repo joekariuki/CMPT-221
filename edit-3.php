@@ -13,12 +13,12 @@
 
 
 <nav class="w3-bar w3-color">
-  <a href="/limbo-Alpha/landing.php" class="w3-left w3-button w3-hover-white">Limbo</a>
+  <a href="/limbo-Alpha/index.php" class="w3-left w3-button w3-hover-white">Limbo</a>
   <a href="/limbo-Alpha/lost.php" class="w3-left w3-button w3-hover-white">Lost Items</a>
   <a href="/limbo-Alpha/found.php" class="w3-left w3-button w3-hover-white">Found Items</a>
   <a href="/limbo-Alpha/ql.php" class="w3-left w3-button w3-hover-white">Quick Links</a>
   <a href="/limbo-Alpha/admin-1.php" class="w3-left w3-button w3-hover-white">Admin Dashboard</a>
-  <a href="/limbo-Alpha/landing.php" class="w3-right w3-button w3-hover-white">Logout</a>
+  <a href="/limbo-Alpha/index.php" class="w3-right w3-button w3-hover-white">Logout</a>
 </nav>
 <?php
 

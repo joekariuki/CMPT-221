@@ -10,7 +10,7 @@
 <body>
   <header>
   <nav class="w3-bar w3-color">
-    <a href="/limbo-Alpha/landing.php" class="w3-left w3-button w3-hover-white">Limbo</a>
+    <a href="/limbo-Alpha/index.php" class="w3-left w3-button w3-hover-white">Limbo</a>
     <a href="/limbo-Alpha/lost.php" class="w3-left w3-button w3-hover-white">Lost Items</a>
     <a href="/limbo-Alpha/found.php" class="w3-left w3-button w3-hover-white">Found Items</a>
     <a href="/limbo-Alpha/ql.php" class="w3-left w3-button w3-hover-white">Quick Links</a>
