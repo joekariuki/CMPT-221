@@ -7,15 +7,10 @@
     "scalpel"
   ],
   "repository": "https://github.com/joekariuki/Limbo",
-  "success_url": "/welcome",
+  "success_url": "/indexit ",
   "scripts": {
     "postdeploy": "bundle exec rake bootstrap"
   },
-  "buildpacks": [
-    {
-      "url": "https://github.com/stomita/heroku-buildpack-phantomjs"
-    }
-  ],
   "environments": {
     "test": {
       "scripts": {
